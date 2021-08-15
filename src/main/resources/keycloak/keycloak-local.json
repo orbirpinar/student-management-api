@@ -1,0 +1,9 @@
+{
+  "realm": "student-management",
+  "auth-server-url": "http://localhost:8084/auth",
+  "ssl-required": "external",
+  "resource": "student-management-rest-api-local",
+  "credentials": {
+    "secret": "6789014c-4dab-436c-b53d-6d746484e0d8"
+  }
+}

@@ -1,0 +1,43 @@
+server:
+  port: 8082
+
+spring:
+  redis:
+    host: redis
+    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/book_rental
+    username: book_rental
+    password: secret
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+    generate-ddl: true
+    properties:
+      hibernate:
+        format-sql: true
+
+
+keycloak-client-id: student-management-rest-api-local
+keycloak-client-secret: 6789014c-4dab-436c-b53d-6d746484e0d8
+keycloak-auth-server-url: http://localhost:8084/auth
+keycloak-realm: student-management
+
+keycloak:
+  config:
+    file-path: "/keycloak/keycloak-local.json"
+
+
+redis:
+  host: localhost
+  port: 6379
+
+kafka:
+  topics: user_register
+  group-id: book-rental
+  bootstrap-servers: localhost:9092
+
+swagger:
+  server:
+    url: http://localhost:8082
