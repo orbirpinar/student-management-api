@@ -3,6 +3,7 @@ package com.orbirpinar.student.management.Api.User.Entity;
 
 
 import com.orbirpinar.student.management.Api.Role.Entity.Role;
+import com.orbirpinar.student.management.Api.Teacher.Entity.Teacher;
 import com.orbirpinar.student.management.Utils.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,6 +37,9 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Teacher teacher;
 
 
 
