@@ -1,7 +1,7 @@
 up:
 	docker compose up -d
 down:
-	dokcer compose down
+	docker compose down
 db:
 	docker exec -ti student_management_db bash
 redis:
