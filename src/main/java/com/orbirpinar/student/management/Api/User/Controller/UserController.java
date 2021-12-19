@@ -36,12 +36,6 @@ public class UserController {
         return ResponseEntity.ok(userList);
     }
 
-    @PostMapping
-    public ResponseEntity<UserViewDto> save(@RequestBody UserCreateDto userCreateDto) {
-        User user = Transformer.map(userCreateDto,User.class);
-        UserViewDto newUser = Transformer.map(userService.create(user), UserViewDto.class);
-        return ResponseEntity.ok(newUser);
-    }
 
     @PatchMapping("/{userId}")
     public ResponseEntity<UserViewDto> update(@PathVariable String userId,@RequestBody UserCreateDto userCreateDto) {

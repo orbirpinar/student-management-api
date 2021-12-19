@@ -3,6 +3,8 @@ package com.orbirpinar.student.management.Keycloak.Config;
 
 import com.orbirpinar.student.management.Keycloak.Client.KeycloakClientToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RootUriTemplateHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -21,6 +23,9 @@ import java.util.List;
 public class KeycloakRestClientConfig {
 
 
+    @Value("${keycloak-auth-server-url}")
+    private String BASE_URL;
+
     @Autowired
     private KeycloakClientToken keycloakClientToken;
 
@@ -35,12 +40,9 @@ public class KeycloakRestClientConfig {
             interceptors = new ArrayList<>();
         }
 
-        //Interceptors
         interceptors.add(new KeycloakRestTemplateHeaderModifierInterceptor());
         restTemplate.setInterceptors(interceptors);
-
-        //Error handler
-//        restTemplate.setErrorHandler(new ApiRestTemplateErrorHandler());
+        restTemplate.setUriTemplateHandler(new RootUriTemplateHandler(BASE_URL));
 
 
         return restTemplate;

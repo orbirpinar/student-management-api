@@ -19,11 +19,6 @@ import java.io.IOException;
 @Service
 public class KeycloakClient{
 
-    @Value("${keycloak-auth-server-url}")
-    private String BASE_URL;
-
-
-
     @Qualifier("KeycloakRestTemplate")
     private final RestTemplate keycloakRestTemplate;
 
@@ -33,41 +28,34 @@ public class KeycloakClient{
 
 
     public String get(String endpoint) throws IOException {
-        String url = BASE_URL + endpoint;
-        return keycloakRestTemplate.getForObject(url,String.class);
+        return keycloakRestTemplate.getForObject(endpoint,String.class);
     }
 
     public String post(String endpoint, String body) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(body,headers);
-        String url = BASE_URL + endpoint;
-        return keycloakRestTemplate.postForObject(url,entity,String.class);
+        return keycloakRestTemplate.postForObject(endpoint,entity,String.class);
     }
 
     public String put(String endpoint, String body) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(body,headers);
-        String url = BASE_URL + endpoint;
-        ResponseEntity<String> response = keycloakRestTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
+        ResponseEntity<String> response = keycloakRestTemplate.exchange(endpoint, HttpMethod.PUT, entity, String.class);
         return response.getBody();
     }
 
     public void delete(String endpoint) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
-        String url = BASE_URL + endpoint;
-        keycloakRestTemplate.delete(url);
+        keycloakRestTemplate.delete(endpoint);
     }
 
     public void deleteWithBody(String endpoint,String body) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(body,headers);
-        String url = BASE_URL + endpoint;
-        keycloakRestTemplate.exchange(url, HttpMethod.DELETE,entity,String.class);
+        keycloakRestTemplate.exchange(endpoint, HttpMethod.DELETE,entity,String.class);
     }
-
-
 }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+import static com.orbirpinar.student.management.Keycloak.Integration.KeycloakEvent.*;
+
 @Service
 @Slf4j
 public class KeycloakConsumerService {
@@ -28,22 +30,24 @@ public class KeycloakConsumerService {
         this.keycloakUserService = keycloakUserService;
     }
 
-    @KafkaListener(topics = "register",groupId = "${kafka.group-id}")
+    @KafkaListener(topics = REGISTER,groupId = "${kafka.group-id}")
     public void listenRegisterEvent(ConsumerRecord<?, ?> data) throws IOException {
         String username = data.value().toString();
-        log.info("USERNAME --> {}",username);
+        log.info("<REGISTER EVENT LISTENER CALLED> FOR {}",username);
         if(!userRepository.existsByUsername(username)) {
             saveKeycloakUserToDb(username);
+            log.info("<NEW USER HAS BEEN CREATED> USERNAME: {}",username);
         }
     }
 
 
-    @KafkaListener(topics = "login",groupId = "${kafka.group-id}")
+    @KafkaListener(topics = LOGIN,groupId = "${kafka.group-id}")
     public void listenLoginEvent(ConsumerRecord<?, ?> data) throws IOException {
         String username = data.value().toString();
-        log.info("USERNAME --> {}",username);
+        log.info("<LOGIN EVENT LISTENER CALLED> FOR {}",username);
         if(!userRepository.existsByUsername(username)) {
             saveKeycloakUserToDb(username);
+            log.info("<NEW USER HAS BEEN CREATED> USERNAME: {}",username);
         }
     }
 
