@@ -30,7 +30,7 @@ public class KeycloakConsumerService {
         this.keycloakUserService = keycloakUserService;
     }
 
-    @KafkaListener(topics = REGISTER,groupId = "${kafka.group-id}")
+    @KafkaListener(topics = "user_register",groupId = "${kafka.group-id}")
     public void listenRegisterEvent(ConsumerRecord<?, ?> data) throws IOException {
         String username = data.value().toString();
         log.info("<REGISTER EVENT LISTENER CALLED> FOR {}",username);
@@ -41,7 +41,7 @@ public class KeycloakConsumerService {
     }
 
 
-    @KafkaListener(topics = LOGIN,groupId = "${kafka.group-id}")
+    @KafkaListener(topics = "login",groupId = "${kafka.group-id}")
     public void listenLoginEvent(ConsumerRecord<?, ?> data) throws IOException {
         String username = data.value().toString();
         log.info("<LOGIN EVENT LISTENER CALLED> FOR {}",username);

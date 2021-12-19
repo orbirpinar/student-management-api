@@ -18,8 +18,10 @@ import java.util.Map;
 @Configuration
 @EnableKafka
 public class KafkaConfiguration {
+
     @Value("${kafka.group-id}")
     private String GROUP_ID;
+
     @Value("${kafka.bootstrap-servers}")
     private String BOOTSTRAP_SERVER;
 
