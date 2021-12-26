@@ -27,18 +27,6 @@ public class KeycloakClientTokenTests {
     @MockBean
     private KeycloakTokenService keycloakTokenService;
 
-    @Value("${keycloak-client-id}")
-    private String CLIENT_ID;
-
-    @Value("${keycloak-client-secret}")
-    private String CLIENT_SECRET;
-
-    @Value("${keycloak-auth-server-url}")
-    private String BASE_URL;
-
-    @Value("${keycloak-realm}")
-    private String REALM;
-
     @Test
     public void shouldReturnHttpStatusOk_WhenClientIdAndClientSecretIsCorrect() throws Exception {
         assertNotNull(keycloakClientToken.token());
