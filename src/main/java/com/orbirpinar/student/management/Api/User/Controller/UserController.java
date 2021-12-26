@@ -2,6 +2,7 @@ package com.orbirpinar.student.management.Api.User.Controller;
 
 
 
+import com.orbirpinar.student.management.Api.Role.DTO.RoleViewDto;
 import com.orbirpinar.student.management.Api.User.DTO.UserCreateDto;
 import com.orbirpinar.student.management.Api.User.DTO.UserViewDto;
 import com.orbirpinar.student.management.Api.User.Entity.User;
@@ -30,17 +31,23 @@ public class UserController {
         return ResponseEntity.ok(userList);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping(value = "/{userId}")
     public ResponseEntity<UserViewDto> getById(@PathVariable String userId) {
         UserViewDto userList = Transformer.map(userService.getById(userId), UserViewDto.class);
         return ResponseEntity.ok(userList);
     }
 
 
-    @PatchMapping("/{userId}")
+    @PatchMapping(value = "/{userId}")
     public ResponseEntity<UserViewDto> update(@PathVariable String userId,@RequestBody UserCreateDto userCreateDto) {
         User user = Transformer.map(userCreateDto,User.class);
         UserViewDto newUser = Transformer.map(userService.update(userId,user), UserViewDto.class);
         return ResponseEntity.ok(newUser);
+    }
+
+    @GetMapping(value = "/{userId}/roles")
+    public ResponseEntity<List<RoleViewDto>> getUsersRoles(@PathVariable String userId) throws Exception {
+        List<RoleViewDto> usersRoles = userService.getUsersRoles(userId);
+        return ResponseEntity.ok(usersRoles);
     }
 }
