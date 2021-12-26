@@ -2,6 +2,7 @@ package com.orbirpinar.student.management.Keycloak.Config;
 
 
 import com.orbirpinar.student.management.Keycloak.Client.KeycloakClientToken;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RootUriTemplateHandler;
@@ -52,6 +53,7 @@ public class KeycloakRestClientConfig {
     public class KeycloakRestTemplateHeaderModifierInterceptor implements ClientHttpRequestInterceptor {
 
 
+        @SneakyThrows
         @Override
         public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException, IOException {
             request.getHeaders().add("accept", "application/json");
