@@ -2,6 +2,7 @@ package com.orbirpinar.student.management.Api.User.Service;
 
 
 import com.orbirpinar.student.management.Api.Role.DTO.RoleViewDto;
+import com.orbirpinar.student.management.Api.User.DTO.UserViewDto;
 import com.orbirpinar.student.management.Api.User.Entity.User;
 import com.orbirpinar.student.management.Api.User.Repository.UserRepository;
 import com.orbirpinar.student.management.Keycloak.Service.KeycloakUserService;
@@ -48,4 +49,5 @@ public class UserServiceImpl implements UserService{
     public List<RoleViewDto> getUsersRoles(String id) throws Exception {
         return keycloakUserService.getUserRoles(id);
     }
+
 }

@@ -49,7 +49,7 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<StudentViewDto> create(@RequestBody StudentRequestDto requestedStudentDto) {
         Student requestedStudent = Transformer.map(requestedStudentDto, Student.class);
-        Student student = studentService.create(requestedStudent);
+        Student student = studentService.save(requestedStudent);
         return ResponseEntity.ok(
                 Transformer.map(student, StudentViewDto.class)
         );

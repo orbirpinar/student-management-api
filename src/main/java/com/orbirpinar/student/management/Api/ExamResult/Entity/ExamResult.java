@@ -23,5 +23,5 @@ public class ExamResult extends BaseEntity implements Serializable {
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;
 
-    private Boolean mark;
+    private Double mark;
 }

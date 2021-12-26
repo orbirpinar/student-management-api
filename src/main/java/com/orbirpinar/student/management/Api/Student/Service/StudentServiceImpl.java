@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student create(Student student) {
+    public Student save(Student student) {
         return studentRepository.save(student);
     }
 
