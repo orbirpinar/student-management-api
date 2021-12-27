@@ -5,10 +5,8 @@ import com.orbirpinar.student.management.Keycloak.Entity.KeycloakToken;
 import com.orbirpinar.student.management.Keycloak.Service.KeycloakTokenService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -33,7 +31,7 @@ public class KeycloakClientTokenTests {
     }
 
     @Test
-    public void getTokenMethodShouldReturnAccessTokenAndPersistInCache() throws Exception {
+    public void getTokenMethod_shouldReturnAccessToken_andPersistInCache() throws Exception {
         KeycloakToken keycloakToken = new KeycloakToken();
         keycloakToken.setAccess_token("123");
         keycloakToken.setExpires_in(123);

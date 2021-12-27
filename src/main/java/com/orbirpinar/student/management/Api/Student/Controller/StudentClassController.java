@@ -4,7 +4,6 @@ import com.orbirpinar.student.management.Api.Class.DTO.ClassCreateDto;
 import com.orbirpinar.student.management.Api.Class.DTO.ClassViewDto;
 import com.orbirpinar.student.management.Api.Class.Entity.Class;
 import com.orbirpinar.student.management.Api.Class.Service.ClassService;
-import com.orbirpinar.student.management.Api.Student.DTO.StudentViewDto;
 import com.orbirpinar.student.management.Utils.Transformer;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
