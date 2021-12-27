@@ -26,8 +26,6 @@ public class Student extends BaseEntity implements Serializable {
     @GenericGenerator(name="uuid_",strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    private String name;
-
     private String firstname;
 
     private String lastname;

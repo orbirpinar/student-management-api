@@ -1,10 +1,12 @@
 package com.orbirpinar.student.management.Api.Student.Controller;
 
-import com.orbirpinar.student.management.Api.Student.DTO.StudentRequestDto;
+import com.orbirpinar.student.management.Api.Student.DTO.StudentCreateDto;
+import com.orbirpinar.student.management.Api.Student.DTO.StudentUpdateDto;
 import com.orbirpinar.student.management.Api.Student.DTO.StudentViewDto;
 import com.orbirpinar.student.management.Api.Student.Entity.Student;
 import com.orbirpinar.student.management.Api.Student.Service.StudentService;
 import com.orbirpinar.student.management.Utils.Transformer;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,13 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
+@AllArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @GetMapping
     public ResponseEntity<List<StudentViewDto>> getAll() {
@@ -28,7 +28,7 @@ public class StudentController {
         );
     }
 
-    @GetMapping("/{studentId}")
+    @GetMapping(value = "/{studentId}")
     public ResponseEntity<StudentViewDto> getById(@PathVariable String studentId) {
         Student student = studentService.getById(studentId);
         return ResponseEntity.ok(Transformer.map(student, StudentViewDto.class));
@@ -36,9 +36,9 @@ public class StudentController {
 
     }
 
-    @PatchMapping("/{studentId}")
+    @PatchMapping(value = "/{studentId}")
     public ResponseEntity<StudentViewDto> update(@PathVariable String studentId, @RequestBody
-            StudentRequestDto requestedStudentDto) {
+            StudentUpdateDto requestedStudentDto) {
         Student requestedStudent = Transformer.map(requestedStudentDto, Student.class);
         Student student = studentService.update(studentId, requestedStudent);
         return ResponseEntity.ok(
@@ -47,7 +47,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentViewDto> create(@RequestBody StudentRequestDto requestedStudentDto) {
+    public ResponseEntity<StudentViewDto> create(@RequestBody StudentCreateDto requestedStudentDto) {
         Student requestedStudent = Transformer.map(requestedStudentDto, Student.class);
         Student student = studentService.save(requestedStudent);
         return ResponseEntity.ok(
