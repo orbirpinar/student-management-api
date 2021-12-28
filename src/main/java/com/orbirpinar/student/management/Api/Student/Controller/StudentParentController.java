@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/students")
+@RestController
+@RequestMapping(value = "/api/students")
 public class StudentParentController {
 
     private final ParentService parentService;

@@ -9,7 +9,9 @@ import com.orbirpinar.student.management.Utils.NullAwareBeanUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -30,9 +32,9 @@ public class ClassServiceImpl implements ClassService{
     }
 
     @Override
-    public List<Class> getByStudentId(String studentId) {
+    public Optional<Class> getByStudentId(String studentId) {
         Student student = studentService.getById(studentId);
-        return classRepository.findByStudent(student);
+        return classRepository.findByStudentsIn(Collections.singletonList(student));
     }
 
     @Override
