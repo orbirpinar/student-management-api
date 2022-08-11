@@ -54,7 +54,7 @@ public class ClassRoomControllerTests {
     public void whenRequestingAllClassesEndpoint_thenReturnListOfClasses() throws Exception {
 
         ClassRoom _class = new ClassRoom();
-        _class.setGrade("5");
+        _class.setGrade("6");
         _class.setBranch("A");
         List<ClassRoom> classList = List.of(_class);
         List<ClassViewDto> classViewDtos = Transformer.mapAll(classList, ClassViewDto.class);
