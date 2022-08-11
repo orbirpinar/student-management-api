@@ -1,8 +1,8 @@
 package com.orbirpinar.student.management.Api.Student.Controller;
 
-import com.orbirpinar.student.management.Api.Class.DTO.ClassCreateDto;
+import com.orbirpinar.student.management.Api.Class.DTO.ClassRoomCreateDto;
 import com.orbirpinar.student.management.Api.Class.DTO.ClassViewDto;
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Api.Class.Service.ClassService;
 import com.orbirpinar.student.management.Utils.Transformer;
 import lombok.AllArgsConstructor;
@@ -16,12 +16,11 @@ public class StudentClassController {
 
     private final ClassService classService;
 
-    // TODO SAVE OR UPDATE STUDENT CLASS
     @PutMapping(value = "/{studentId}/classes")
-    public ResponseEntity<ClassViewDto> createOrUpdate(@RequestBody ClassCreateDto classTobeCreated,
+    public ResponseEntity<ClassViewDto> createOrUpdate(@RequestBody ClassRoomCreateDto classTobeCreated,
                                                          @PathVariable String studentId) {
-        Class _class = Transformer.map(classTobeCreated, Class.class);
-        Class newClass = classService.saveOrUpdateStudentsClass(_class, studentId);
+        ClassRoom _class = Transformer.map(classTobeCreated, ClassRoom.class);
+        ClassRoom newClass = classService.saveOrUpdateStudentsClass(_class, studentId);
         return ResponseEntity.ok(Transformer.map(newClass, ClassViewDto.class));
     }
 }

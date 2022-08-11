@@ -2,10 +2,7 @@ package com.orbirpinar.student.management.Api.Class.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orbirpinar.student.management.Api.Class.DTO.ClassViewDto;
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
-import com.orbirpinar.student.management.Api.Parent.Controller.ParentController;
-import com.orbirpinar.student.management.Api.Parent.DTO.ParentViewDto;
-import com.orbirpinar.student.management.Api.Parent.Entity.Parent;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Utils.Transformer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,9 +22,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ClassController.class)
+@WebMvcTest(controllers = ClassRoomController.class)
 @RunWith(SpringRunner.class)
-public class ClassControllerTests {
+public class ClassRoomControllerTests {
 
 
     @Autowired
@@ -38,7 +35,7 @@ public class ClassControllerTests {
 
 
     @MockBean
-    private ClassController classController;
+    private ClassRoomController classController;
 
     @Test
     public void whenCallClassList_thenReturns200() throws Exception {
@@ -56,10 +53,10 @@ public class ClassControllerTests {
     @Test
     public void whenRequestingAllClassesEndpoint_thenReturnListOfClasses() throws Exception {
 
-        Class _class = new Class();
+        ClassRoom _class = new ClassRoom();
         _class.setGrade("5");
         _class.setBranch("A");
-        List<Class> classList = List.of(_class);
+        List<ClassRoom> classList = List.of(_class);
         List<ClassViewDto> classViewDtos = Transformer.mapAll(classList, ClassViewDto.class);
         given(classController.getAll()).willReturn(ResponseEntity.ok(classViewDtos));
         mockMvc.perform(get("/api/classes").contentType("application/json"))

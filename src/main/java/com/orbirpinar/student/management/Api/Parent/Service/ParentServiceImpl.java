@@ -35,7 +35,7 @@ public class ParentServiceImpl implements ParentService {
     public List<Parent> createParentByStudent(String studentId, Parent parent) {
         Student student = studentService.getById(studentId);
         student.getParent().add(parent);
-        studentService.save(student);
+        studentService.create(student);
         return student.getParent();
     }
 

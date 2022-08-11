@@ -1,6 +1,6 @@
 package com.orbirpinar.student.management.Api.Examination.Entity;
 
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Api.ExamResult.Entity.ExamResult;
 import com.orbirpinar.student.management.Api.Subject.Entity.Subject;
 import com.orbirpinar.student.management.Utils.BaseEntity;
@@ -40,7 +40,7 @@ public class Exam extends BaseEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "class_id", nullable = false)
-    private Class _class;
+    private ClassRoom classRoom;
 
     @OneToMany(mappedBy = "exam")
     private Set<ExamResult> results;

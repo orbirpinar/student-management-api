@@ -1,5 +1,6 @@
 package com.orbirpinar.student.management.Api.Student.DTO;
 
+import com.orbirpinar.student.management.Api.Student.Entity.Gender;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,9 +20,13 @@ public class StudentViewDto implements Serializable {
     private String lastname;
 
 
-    private String gender;
+    private Gender gender;
 
     private LocalDate birthDate;
 
     private String phoneNumber;
+
+    private String classRoom;
+
+
 }

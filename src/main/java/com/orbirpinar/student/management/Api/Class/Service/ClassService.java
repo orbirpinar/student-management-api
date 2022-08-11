@@ -1,16 +1,16 @@
 package com.orbirpinar.student.management.Api.Class.Service;
 
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ClassService {
 
-    List<Class> getAll();
-    Class getById(String id);
-    Optional<Class> getByStudentId(String studentId);
-    Class create(Class _class);
-    Class update(Class _class,String id);
-    Class saveOrUpdateStudentsClass(Class _class, String studentId);
+    List<ClassRoom> getAll();
+    ClassRoom getById(String id);
+    Optional<ClassRoom> getByStudentId(String studentId);
+    ClassRoom create(ClassRoom _class);
+    ClassRoom update(ClassRoom _class, String id);
+    ClassRoom saveOrUpdateStudentsClass(ClassRoom _class, String studentId);
 }

@@ -3,8 +3,6 @@ package com.orbirpinar.student.management.Exception;
 
 import com.orbirpinar.student.management.Exception.ApiError.ApiError;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
-import org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
@@ -264,11 +262,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(CustomException.class)
-    protected ResponseEntity<Object> handleNotBelongsException(CustomException ex) {
+    @ExceptionHandler(StudentManagementBusinessException.class)
+    protected ResponseEntity<Object> handleNotBelongsException(StudentManagementBusinessException ex,
+                                                               WebRequest request, HttpServletRequest req) {
         ApiError apiError = new ApiError(BAD_REQUEST);
+
         apiError.setCode(BAD_REQUEST.value());
-        apiError.setMessage(ex.getMessage());
+        apiError.setMessage(ex.getError().getDescription());
+        apiError.setErrorCode(ex.getError().getErrorCode());
+        apiError.setUri(req.getRequestURI());
         return buildResponseEntity(apiError);
     }
 

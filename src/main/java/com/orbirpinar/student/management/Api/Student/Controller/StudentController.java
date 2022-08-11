@@ -24,34 +24,34 @@ public class StudentController {
     public ResponseEntity<List<StudentViewDto>> getAll() {
         List<Student> students = studentService.getAll();
         return ResponseEntity.ok(
-                Transformer.mapAll(students, StudentViewDto.class)
+                students.stream().map(Student::toViewDto).toList()
         );
     }
 
     @GetMapping(value = "/{studentId}")
     public ResponseEntity<StudentViewDto> getById(@PathVariable String studentId) {
         Student student = studentService.getById(studentId);
-        return ResponseEntity.ok(Transformer.map(student, StudentViewDto.class));
+        return ResponseEntity.ok(student.toViewDto());
 
 
     }
 
     @PatchMapping(value = "/{studentId}")
     public ResponseEntity<StudentViewDto> update(@PathVariable String studentId, @RequestBody
-            StudentUpdateDto requestedStudentDto) {
+    StudentUpdateDto requestedStudentDto) {
         Student requestedStudent = Transformer.map(requestedStudentDto, Student.class);
         Student student = studentService.update(studentId, requestedStudent);
         return ResponseEntity.ok(
-                Transformer.map(student, StudentViewDto.class)
+                student.toViewDto()
         );
     }
 
     @PostMapping
     public ResponseEntity<StudentViewDto> create(@RequestBody StudentCreateDto requestedStudentDto) {
-        Student requestedStudent = Transformer.map(requestedStudentDto, Student.class);
-        Student student = studentService.save(requestedStudent);
+        Student requestedStudent = StudentCreateDto.toEntity(requestedStudentDto);
+        Student student = studentService.create(requestedStudent);
         return ResponseEntity.ok(
-                Transformer.map(student, StudentViewDto.class)
+                student.toViewDto()
         );
     }
 

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orbirpinar.student.management.Api.Role.DTO.RoleViewDto;
 import com.orbirpinar.student.management.Api.User.DTO.UserViewDto;
 import com.orbirpinar.student.management.Keycloak.Client.KeycloakClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +21,11 @@ public class KeycloakUserService {
 
 
 
-    @Autowired
-    private KeycloakClient keycloakClient;
+    private final KeycloakClient keycloakClient;
+
+    public KeycloakUserService (KeycloakClient keycloakClient) {
+        this.keycloakClient = keycloakClient;
+    }
 
     private final ObjectMapper objectMapper = new ObjectMapper().enable(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT);
 
@@ -40,7 +42,7 @@ public class KeycloakUserService {
 
     public List<RoleViewDto> getUserRoles(String userId) throws  Exception {
         String response = keycloakClient.get("/admin/realms/" + REALM + "/users/" + userId + "/role-mappings/realm");
-        return objectMapper.readValue(response, new TypeReference<>() {});
+        return objectMapper.readValue(response, new TypeReference<List<RoleViewDto>>() {});
     }
 
 

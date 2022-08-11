@@ -1,9 +1,8 @@
 package com.orbirpinar.student.management.Api.Student.Entity;
 
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Api.Parent.Entity.Parent;
-import com.orbirpinar.student.management.Api.Subject.Entity.Subject;
-import com.orbirpinar.student.management.Api.Teacher.Entity.Teacher;
+import com.orbirpinar.student.management.Api.Student.DTO.StudentViewDto;
 import com.orbirpinar.student.management.Utils.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,7 +12,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -31,7 +29,8 @@ public class Student extends BaseEntity implements Serializable {
     private String lastname;
 
 
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     private LocalDate birthDate;
 
@@ -44,7 +43,20 @@ public class Student extends BaseEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "class_id", nullable = false)
-    private Class _class;
+    private ClassRoom classRoom;
+
+    public  StudentViewDto toViewDto() {
+        StudentViewDto studentViewDto = new StudentViewDto();
+        studentViewDto.setId(this.id);
+        studentViewDto.setFirstname(this.firstname);
+        studentViewDto.setLastname(this.lastname);
+        studentViewDto.setName(this.firstname + " "  + this.lastname);
+        studentViewDto.setGender(this.gender);
+        studentViewDto.setBirthDate(this.birthDate);
+        studentViewDto.setPhoneNumber(this.phoneNumber);
+        studentViewDto.setClassRoom(this.classRoom.toString());
+        return studentViewDto;
+    }
 
 
 

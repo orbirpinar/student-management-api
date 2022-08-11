@@ -31,8 +31,7 @@ import java.io.InputStream;
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
 
-    @Value("${keycloak.config.file-path}")
-    private String CONFIG_PATH;
+
 
     @Autowired
     public void configureGlobal(
@@ -45,31 +44,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public KeycloakSpringBootConfigResolver KeycloakConfigResolver() {
-        return new KeycloakSpringBootConfigResolver() {
-
-            private KeycloakDeployment keycloakDeployment;
-
-            @Override
-            public KeycloakDeployment resolve(HttpFacade.Request facade) {
-                if (keycloakDeployment != null) {
-                    return keycloakDeployment;
-                }
-
-                InputStream configInputStream = getClass().getResourceAsStream(CONFIG_PATH);
-
-                if (configInputStream == null) {
-                    throw new RuntimeException("Could not load Keycloak deployment info: " + CONFIG_PATH);
-                } else {
-                    keycloakDeployment = KeycloakDeploymentBuilder.build(configInputStream);
-                }
-
-                return keycloakDeployment;
-            }
-        };
-    }
-
-    @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
         return new RegisterSessionAuthenticationStrategy(
@@ -79,7 +53,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
                 .anyRequest()
                 .permitAll();
     }

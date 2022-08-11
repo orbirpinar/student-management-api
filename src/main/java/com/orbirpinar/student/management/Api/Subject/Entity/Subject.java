@@ -1,6 +1,6 @@
 package com.orbirpinar.student.management.Api.Subject.Entity;
 
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Api.Examination.Entity.Exam;
 import com.orbirpinar.student.management.Api.Teacher.Entity.Teacher;
 import com.orbirpinar.student.management.Utils.BaseEntity;
@@ -26,7 +26,7 @@ public class Subject extends BaseEntity implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "subjects")
-    private Set<Class> classes;
+    private Set<ClassRoom> classes;
 
     @ManyToMany(mappedBy = "subjects")
     private Set<Teacher> teachers;

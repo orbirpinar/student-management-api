@@ -7,9 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class ClassCreateDto implements Serializable {
-
-    private String id;
+public class ClassRoomCreateDto implements Serializable {
 
     private String grade;
 

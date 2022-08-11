@@ -1,6 +1,6 @@
 package com.orbirpinar.student.management.Api.Teacher.Entity;
 
-import com.orbirpinar.student.management.Api.Class.Entity.Class;
+import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Api.Subject.Entity.Subject;
 import com.orbirpinar.student.management.Api.User.Entity.User;
 import com.orbirpinar.student.management.Utils.BaseEntity;
@@ -43,7 +43,7 @@ public class Teacher extends BaseEntity implements Serializable {
     private User user;
 
     @ManyToMany(mappedBy = "teachers")
-    private Set<Class> classes;
+    private Set<ClassRoom> classes;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     @JoinTable(	name = "teacher_subject",

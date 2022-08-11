@@ -2,16 +2,16 @@ package com.orbirpinar.student.management.Api.Parent.Entity;
 
 import com.orbirpinar.student.management.Api.Student.Entity.Student;
 import com.orbirpinar.student.management.Utils.BaseEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@Data
+@Getter
+@Setter
 public class Parent extends BaseEntity implements Serializable {
 
     @Id
