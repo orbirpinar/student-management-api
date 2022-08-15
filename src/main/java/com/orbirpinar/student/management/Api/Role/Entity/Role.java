@@ -2,7 +2,7 @@ package com.orbirpinar.student.management.Api.Role.Entity;
 
 
 import com.orbirpinar.student.management.Api.User.Entity.User;
-import com.orbirpinar.student.management.Utils.BaseEntity;
+import com.orbirpinar.student.management.Api.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

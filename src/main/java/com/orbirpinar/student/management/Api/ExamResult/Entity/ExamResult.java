@@ -1,7 +1,7 @@
 package com.orbirpinar.student.management.Api.ExamResult.Entity;
 
 import com.orbirpinar.student.management.Api.Examination.Entity.Exam;
-import com.orbirpinar.student.management.Utils.BaseEntity;
+import com.orbirpinar.student.management.Api.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;

@@ -1,6 +1,6 @@
 package com.orbirpinar.student.management.Api.Student.DTO;
 
-import com.orbirpinar.student.management.Api.Student.Entity.Gender;
+import com.orbirpinar.student.management.Api.common.Gender;
 import lombok.Getter;
 import lombok.Setter;
 

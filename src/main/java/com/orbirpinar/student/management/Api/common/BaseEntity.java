@@ -1,4 +1,4 @@
-package com.orbirpinar.student.management.Utils;
+package com.orbirpinar.student.management.Api.common;
 
 import lombok.Getter;
 import lombok.Setter;

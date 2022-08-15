@@ -3,8 +3,8 @@ package com.orbirpinar.student.management.Api.User.Entity;
 
 
 import com.orbirpinar.student.management.Api.Role.Entity.Role;
-import com.orbirpinar.student.management.Api.Teacher.Entity.Teacher;
-import com.orbirpinar.student.management.Utils.BaseEntity;
+import com.orbirpinar.student.management.Api.teacher.entity.Teacher;
+import com.orbirpinar.student.management.Api.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

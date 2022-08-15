@@ -1,7 +1,7 @@
 package com.orbirpinar.student.management.Api.Parent.Entity;
 
 import com.orbirpinar.student.management.Api.Student.Entity.Student;
-import com.orbirpinar.student.management.Utils.BaseEntity;
+import com.orbirpinar.student.management.Api.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;

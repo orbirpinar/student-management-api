@@ -1,9 +1,10 @@
-package com.orbirpinar.student.management.Api.Teacher.Entity;
+package com.orbirpinar.student.management.Api.teacher.entity;
 
 import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
+import com.orbirpinar.student.management.Api.common.Gender;
 import com.orbirpinar.student.management.Api.Subject.Entity.Subject;
 import com.orbirpinar.student.management.Api.User.Entity.User;
-import com.orbirpinar.student.management.Utils.BaseEntity;
+import com.orbirpinar.student.management.Api.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
@@ -25,15 +26,14 @@ public class Teacher extends BaseEntity implements Serializable {
     @GenericGenerator(name="uuid_",strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    private String firstname;
+    private String firstName;
 
-    private String lastname;
+    private String lastName;
 
     private LocalDate birthDate;
 
-    private String gender;
-
-    private String department;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     private String graduatedSchool;
 
@@ -50,6 +50,7 @@ public class Teacher extends BaseEntity implements Serializable {
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> subjects;
+
 
 
 }

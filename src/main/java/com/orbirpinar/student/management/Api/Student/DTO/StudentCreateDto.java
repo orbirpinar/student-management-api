@@ -2,7 +2,7 @@ package com.orbirpinar.student.management.Api.Student.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
-import com.orbirpinar.student.management.Api.Student.Entity.Gender;
+import com.orbirpinar.student.management.Api.common.Gender;
 import com.orbirpinar.student.management.Api.Student.Entity.Student;
 import com.orbirpinar.student.management.Exception.Error;
 import com.orbirpinar.student.management.Exception.StudentManagementBusinessException;

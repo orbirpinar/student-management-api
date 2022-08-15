@@ -2,8 +2,8 @@ package com.orbirpinar.student.management.Api.Subject.Entity;
 
 import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
 import com.orbirpinar.student.management.Api.Examination.Entity.Exam;
-import com.orbirpinar.student.management.Api.Teacher.Entity.Teacher;
-import com.orbirpinar.student.management.Utils.BaseEntity;
+import com.orbirpinar.student.management.Api.teacher.entity.Teacher;
+import com.orbirpinar.student.management.Api.common.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
