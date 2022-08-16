@@ -14,4 +14,5 @@ public interface UserService {
     User create(User user);
     User update(String id,User user);
     List<RoleViewDto> getUsersRoles(String id) throws Exception;
+
 }

@@ -26,16 +26,14 @@ public class Teacher extends BaseEntity implements Serializable {
     @GenericGenerator(name="uuid_",strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    private String firstName;
-
-    private String lastName;
-
     private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     private String graduatedSchool;
+
+    private String department;
 
 
     @OneToOne(fetch = FetchType.LAZY,optional = false)

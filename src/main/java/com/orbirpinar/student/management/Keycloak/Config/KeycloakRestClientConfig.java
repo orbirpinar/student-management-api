@@ -4,6 +4,7 @@ package com.orbirpinar.student.management.Keycloak.Config;
 import com.orbirpinar.student.management.Keycloak.Client.KeycloakClientToken;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RootUriTemplateHandler;
 import org.springframework.context.annotation.Bean;
@@ -24,15 +25,15 @@ import java.util.List;
 public class KeycloakRestClientConfig {
 
 
-    @Value("${keycloak-auth-server-url}")
+    @Value("${keycloak-auth-admin-url}")
     private String BASE_URL;
 
     @Autowired
     private KeycloakClientToken keycloakClientToken;
 
 
-    @Bean("KeycloakRestTemplate")
-    @Primary
+    @Bean
+    @Qualifier("KeycloakRestTemplate")
     public RestTemplate keycloakRestTemplate() {
         RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
 
@@ -63,7 +64,6 @@ public class KeycloakRestClientConfig {
             request.getHeaders().add("authorization", "Bearer " + token);
             ClientHttpResponse response = execution.execute(request, body);
 
-            // If unauthorized get new token.
             if (response.getStatusCode() == HttpStatus.UNAUTHORIZED) {
                 keycloakClientToken.token();
                 request.getHeaders().remove(HttpHeaders.AUTHORIZATION);

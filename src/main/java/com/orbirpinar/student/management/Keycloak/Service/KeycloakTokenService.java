@@ -7,6 +7,7 @@ import com.orbirpinar.student.management.Utils.NullAwareBeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -28,7 +29,7 @@ public class KeycloakTokenService {
         return keycloakTokenRepository.findById(id);
     }
 
-    public Optional<KeycloakToken> saveOrUpdate(KeycloakToken newKeycloakToken) {
+    public KeycloakToken saveOrUpdate(KeycloakToken newKeycloakToken) {
         Optional<KeycloakToken> keycloakToken = this.getById("keycloak");
         if(keycloakToken.isPresent()) {
             NullAwareBeanUtils.copyNonNullProperties(newKeycloakToken,keycloakToken.get());
@@ -36,6 +37,6 @@ public class KeycloakTokenService {
         }else {
             save(newKeycloakToken);
         }
-        return this.getById("keycloak");
+        return this.getById("keycloak").orElseThrow(() -> new EntityNotFoundException(""));
     }
 }

@@ -19,6 +19,7 @@ public class TeacherViewDto {
     private Gender gender;
     private LocalDate birthDate;
     private String graduateSchool;
+    private String department;
     private UserViewDto user;
     private List<ClassViewDto> classes;
 }

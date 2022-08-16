@@ -21,8 +21,11 @@ spring:
 
 keycloak-client-id: student-management-rest-api-local
 keycloak-client-secret: 6789014c-4dab-436c-b53d-6d746484e0d8
-keycloak-auth-server-url: http://localhost:8084/auth
 keycloak-realm: student-management
+keycloak-auth-admin-url: http://localhost:8084/auth/admin/realms/student-management
+keycloak-token-url: http://localhost:8084/auth/realms/student-management/protocol/openid-connect/token
+
+seeder-base-url: http://localhost:5000/api/v1
 
 keycloak:
   config:

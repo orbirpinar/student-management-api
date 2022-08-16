@@ -20,6 +20,7 @@ public class TeacherCreateDto {
     private Gender gender;
     private LocalDate birthDate;
     private String graduateSchool;
+    private String department;
 
     public Teacher toEntity(TeacherCreateDto teacherCreateDto) {
         Teacher teacher = new Teacher();
@@ -28,6 +29,7 @@ public class TeacherCreateDto {
         teacher.setBirthDate(teacherCreateDto.getBirthDate());
         teacher.setGraduatedSchool(teacherCreateDto.getGraduateSchool());
         teacher.setGender(teacherCreateDto.getGender());
+        teacher.setDepartment(teacherCreateDto.getDepartment());
         User user = new User();
         user.setId(teacherCreateDto.getUserId());
         teacher.setUser(user);
