@@ -49,8 +49,6 @@ public class UserSeederServiceImpl implements UserSeederService {
             User savedUser = userRepository.save(user);
             Teacher teacher = new Teacher();
             teacher.setUser(savedUser);
-            teacher.setFirstName(res.getFirstname());
-            teacher.setLastName(res.getLastname());
             teacher.setDepartment(res.getDepartment());
             teacherRepository.save(teacher);
         });

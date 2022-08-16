@@ -1,10 +1,13 @@
 package com.orbirpinar.student.management.Api.teacher.entity;
 
 import com.orbirpinar.student.management.Api.Class.Entity.ClassRoom;
+import com.orbirpinar.student.management.Api.User.DTO.UserViewDto;
 import com.orbirpinar.student.management.Api.common.Gender;
 import com.orbirpinar.student.management.Api.Subject.Entity.Subject;
 import com.orbirpinar.student.management.Api.User.Entity.User;
 import com.orbirpinar.student.management.Api.common.BaseEntity;
+import com.orbirpinar.student.management.Api.teacher.dto.TeacherViewDto;
+import com.orbirpinar.student.management.Utils.Transformer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
@@ -49,6 +52,17 @@ public class Teacher extends BaseEntity implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "subject_id"))
     private Set<Subject> subjects;
 
-
+    public TeacherViewDto toViewDto() {
+        TeacherViewDto teacherViewDto = new TeacherViewDto();
+        teacherViewDto.setId(id);
+        teacherViewDto.setDepartment(department);
+        teacherViewDto.setBirthDate(birthDate);
+        teacherViewDto.setFirstName(user.getFirstName());
+        teacherViewDto.setLastName(user.getLastName());
+        teacherViewDto.setGraduateSchool(graduatedSchool);
+        teacherViewDto.setGender(gender);
+        teacherViewDto.setUser(Transformer.map(user, UserViewDto.class));
+        return teacherViewDto;
+    }
 
 }

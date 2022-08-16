@@ -24,8 +24,6 @@ public class TeacherCreateDto {
 
     public Teacher toEntity(TeacherCreateDto teacherCreateDto) {
         Teacher teacher = new Teacher();
-        teacher.setFirstName(teacherCreateDto.getFirstName());
-        teacher.setLastName(teacherCreateDto.getLastName());
         teacher.setBirthDate(teacherCreateDto.getBirthDate());
         teacher.setGraduatedSchool(teacherCreateDto.getGraduateSchool());
         teacher.setGender(teacherCreateDto.getGender());

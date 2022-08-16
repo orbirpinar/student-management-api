@@ -23,7 +23,7 @@ public class TeacherController {
     public ResponseEntity<List<TeacherViewDto>> getAll() {
         List<Teacher> teachers = teacherService.getAll();
         return ResponseEntity.ok(
-                Transformer.mapAll(teachers,TeacherViewDto.class)
+                teachers.stream().map(Teacher::toViewDto).toList()
         );
     }
 
@@ -32,7 +32,7 @@ public class TeacherController {
         Teacher teacher = Transformer.map(teacherCreateDto, Teacher.class);
         Teacher newTeacher = teacherService.create(teacher,teacherCreateDto.getUserId());
         return ResponseEntity.ok(
-                Transformer.map(newTeacher,TeacherViewDto.class)
+               newTeacher.toViewDto()
         );
     }
 
@@ -42,7 +42,7 @@ public class TeacherController {
         Teacher teacher = Transformer.map(teacherUpdateDto,Teacher.class);
         Teacher updatedTeacher = teacherService.update(teacherId,teacher);
         return ResponseEntity.ok(
-                Transformer.map(updatedTeacher,TeacherViewDto.class)
+               updatedTeacher.toViewDto()
         );
     }
 
