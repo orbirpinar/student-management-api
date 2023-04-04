@@ -1,6 +1,6 @@
 # Student Management Api
 
-A web application where teachers can manage their grades, homeworks,projects of their students.
+A web application for teachers to manage their students' grades, homework, and projects
 
 ## Getting Started
 - First of all, you need to run the  auth-service for authentication and authorization. Visit [this repo](https://github.com/orbirpinar/student-management-auth-service).
